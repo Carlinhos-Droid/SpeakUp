@@ -391,6 +391,93 @@ tbody tr:last-child td{border-bottom:none}
   .view{padding:16px 12px 96px}
   .card{padding:16px}
 }
+
+/* ---------- LOGIN DO PROFESSOR ---------- */
+.teacher-login-btn{
+  width:100%;
+  margin-top:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.teacher-login-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(78,227,155,.12);
+  color:var(--green);
+  font-size:.78rem;
+  font-weight:800;
+}
+.teacher-login-box{max-width:430px}
+.teacher-login-box .login-icon{
+  width:64px;height:64px;margin:0 auto 12px;border-radius:20px;
+  display:grid;place-items:center;font-size:2rem;
+  background:rgba(177,131,255,.14);
+}
+.teacher-login-box .login-help{
+  color:var(--txt-dim);font-size:.82rem;margin:4px 0 18px;text-align:center;
+}
+.teacher-login-box .login-error{
+  display:none;
+  margin:0 0 14px;
+  padding:10px 12px;border-radius:12px;
+  background:rgba(255,107,122,.10);
+  border:1px solid rgba(255,107,122,.28);
+  color:var(--red);font-size:.84rem;font-weight:700;
+}
+.teacher-login-box .login-error.on{display:block}
+.teacher-login-box .login-actions{display:flex;gap:10px;margin-top:6px}
+.teacher-login-box .login-actions .btn{flex:1}
+.teacher-area-lock{
+  padding:22px;text-align:center;
+  border:1px dashed var(--line);
+  border-radius:var(--r-m);
+  color:var(--txt-mid);
+}
+
+
+/* Área do professor bloqueada até o login */
+#navTeacher.teacher-locked { display: none !important; }
+#teacherAreaLock {
+  margin: 24px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--panel);
+  text-align: center;
+}
+
+
+/* ---------- ACESSIBILIDADE ---------- */
+.skip-link{position:fixed;left:12px;top:-60px;z-index:400;background:var(--rose);color:#2a1215;padding:10px 16px;border-radius:12px;font-weight:800;text-decoration:none;transition:top .15s}
+.skip-link:focus{top:12px}
+#a11yFab{position:fixed;right:16px;bottom:84px;z-index:300;width:52px;height:52px;border-radius:50%;background:var(--rose);color:#2a1215;border:3px solid #fff;font-size:1.5rem;display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh)}
+#a11yPanel{position:fixed;right:16px;bottom:146px;z-index:300;width:min(340px,calc(100vw - 32px));max-height:calc(100vh - 170px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh);padding:16px;display:none}
+#a11yPanel.on{display:block}
+#a11yPanel h2{font-size:1.1rem;margin:0 0 4px}
+#a11yPanel p{margin:0 0 12px;color:var(--txt-mid);font-size:.85rem}
+.a11y-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line-soft);font-weight:700;font-size:.9rem}
+.a11y-row .btns{display:flex;gap:6px}
+.a11y-btn{padding:7px 12px;border-radius:10px;background:var(--surface-3);border:1px solid var(--line);font-weight:800;cursor:pointer}
+.a11y-btn[aria-pressed="true"]{background:var(--rose);color:#2a1215;border-color:var(--rose)}
+.a11y-reset{width:100%;margin-top:10px}
+
+html.a11y-contrast{--bg:#000;--bg-deep:#000;--surface:#000;--surface-2:#0a0a0a;--surface-3:#161616;--line:#fff;--line-soft:#9a9a9a;--txt:#fff;--txt-mid:#fff;--txt-dim:#e6e6e6;--rose:#ffd25e;--rose-deep:#ffd25e}
+html.a11y-contrast body{background-image:none}
+html.a11y-contrast *{text-shadow:none !important}
+html.a11y-contrast .btn,html.a11y-contrast .input,html.a11y-contrast .card{border:2px solid #fff}
+html.a11y-dyslexia,html.a11y-dyslexia *{font-family:'Comic Sans MS','Atkinson Hyperlegible',Verdana,sans-serif !important;letter-spacing:.04em}
+html.a11y-spacing body,html.a11y-spacing p,html.a11y-spacing li,html.a11y-spacing td{line-height:1.9 !important;word-spacing:.12em}
+html.a11y-links a{text-decoration:underline !important;outline:2px solid var(--yellow);outline-offset:2px}
+html.a11y-motion *,html.a11y-motion *::before,html.a11y-motion *::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+html.a11y-focus :focus-visible{outline:4px solid var(--yellow) !important;outline-offset:3px}
+html.a11y-cursor,html.a11y-cursor *{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M4 2l24 14-10 2 6 12-5 2-6-12-9 7z' fill='black' stroke='white' stroke-width='2'/></svg>") 4 2,auto !important}
+.a11y-reading{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
+
 </style>
 </head>
 <body>
@@ -402,9 +489,10 @@ tbody tr:last-child td{border-bottom:none}
       <div><b>Speak&nbsp;Up</b><small>Pequenos passos, grandes conversas</small></div>
     </div>
     <div class="nav-label">Estudante</div>
-    <nav id="navMain"></nav>
+    <nav id="navMain" aria-label="Menu principal"></nav>
     <div class="nav-label">Escola</div>
-    <nav id="navTeacher"></nav>
+    <nav id="navTeacher" class="teacher-locked" aria-label="Menu da escola"></nav>
+    <button class="btn ghost sm teacher-login-btn" id="teacherLoginBtn" type="button" onclick="openTeacherLogin()">🧑‍🏫 Entrar como professor</button>
     <div class="nav-spacer"></div>
     <div class="nav-foot">Seus dados ficam salvos neste navegador.</div>
   </aside>
@@ -417,16 +505,158 @@ tbody tr:last-child td{border-bottom:none}
       <div class="stat-pill xp" title="XP total"><i>⭐</i><span id="tbXp">0</span></div>
       <div class="stat-pill lvl" title="Nível"><i>🏅</i><span id="tbLvl">1</span></div>
       <div class="spacer"></div>
-      <button class="avatar-btn" id="tbAvatar" title="Perfil">🙂</button>
+      <button class="avatar-btn" id="tbAvatar" title="Perfil" aria-label="Perfil">🙂</button>
     </header>
-    <main id="app"></main>
+    <main id="app" tabindex="-1"></main>
   </div>
 </div>
 
-<div id="toasts"></div>
+
+<!-- Login do professor: simulado, sem armazenamento de credenciais -->
+<div id="teacherLoginModal" class="overlay" style="display:none" aria-hidden="true">
+  <div class="modal teacher-login-box" role="dialog" aria-modal="true" aria-labelledby="teacherLoginTitle">
+    <div class="login-icon">🧑‍🏫</div>
+    <h2 id="teacherLoginTitle" style="text-align:center">Login do professor</h2>
+    <p class="login-help">Digite um e-mail e uma senha para entrar. Este login é apenas demonstrativo e não salva os dados.</p>
+
+    <div id="teacherLoginError" class="login-error"></div>
+
+    <label class="field">
+      <span>E-mail</span>
+      <input class="input" id="teacherEmail" type="email" autocomplete="off" placeholder="professor@escola.com">
+    </label>
+
+    <label class="field">
+      <span>Senha</span>
+      <input class="input" id="teacherPassword" type="password" autocomplete="off" placeholder="Digite sua senha">
+    </label>
+
+    <div class="login-actions">
+      <button class="btn ghost" type="button" onclick="closeTeacherLogin()">Cancelar</button>
+      <button class="btn primary" type="button" onclick="teacherLogin()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+
+<a href="#app" class="skip-link">Pular para o conteúdo principal</a>
+<button id="a11yFab" type="button" aria-label="Abrir opções de acessibilidade" aria-expanded="false" aria-controls="a11yPanel" title="Acessibilidade">♿</button>
+<section id="a11yPanel" role="dialog" aria-labelledby="a11yTitle" aria-modal="false">
+  <h2 id="a11yTitle">Acessibilidade</h2>
+  <p>Ajuste o site ao seu jeito. Suas escolhas ficam salvas neste navegador.</p>
+  <div class="a11y-row"><span>Tamanho do texto</span>
+    <span class="btns">
+      <button class="a11y-btn" type="button" data-a11y-size="-1" aria-label="Diminuir texto">A−</button>
+      <button class="a11y-btn" type="button" data-a11y-size="0" aria-label="Tamanho normal">A</button>
+      <button class="a11y-btn" type="button" data-a11y-size="1" aria-label="Aumentar texto">A+</button>
+    </span></div>
+  <div class="a11y-row"><span>Alto contraste</span><button class="a11y-btn" type="button" data-a11y="contrast" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Fonte para dislexia</span><button class="a11y-btn" type="button" data-a11y="dyslexia" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Espaçamento do texto</span><button class="a11y-btn" type="button" data-a11y="spacing" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Destacar links</span><button class="a11y-btn" type="button" data-a11y="links" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Reduzir animações</span><button class="a11y-btn" type="button" data-a11y="motion" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Foco reforçado</span><button class="a11y-btn" type="button" data-a11y="focus" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Cursor grande</span><button class="a11y-btn" type="button" data-a11y="cursor" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Leitura em voz alta</span><button class="a11y-btn" type="button" data-a11y="reader" aria-pressed="false">Desligado</button></div>
+  <div class="a11y-row"><span>Tradutor de Libras (VLibras)</span><button class="a11y-btn" type="button" data-a11y="vlibras" aria-pressed="false">Desligado</button></div>
+  <button class="btn ghost sm a11y-reset" type="button" id="a11yReset">Restaurar padrões</button>
+</section>
+<div id="a11yLive" class="sr-only" aria-live="polite" style="position:absolute;left:-9999px"></div>
+
+<div id="toasts" role="status" aria-live="polite"></div>
 <div id="modalHost"></div>
 
 <script>
+
+/* ---------- LOGIN DO PROFESSOR (DEMONSTRATIVO) ---------- */
+/* Nada é salvo em localStorage/cookies: o estado existe somente enquanto a página está aberta. */
+let teacherLoggedIn = false;
+let teacherSessionEmail = '';
+
+function openTeacherLogin(){
+  const modal = document.getElementById('teacherLoginModal');
+  const error = document.getElementById('teacherLoginError');
+  if(!modal) return;
+  error.classList.remove('on');
+  error.textContent = '';
+  document.getElementById('teacherEmail').value = '';
+  document.getElementById('teacherPassword').value = '';
+  modal.style.display = 'grid';
+  modal.setAttribute('aria-hidden','false');
+  setTimeout(() => document.getElementById('teacherEmail')?.focus(), 50);
+}
+
+function closeTeacherLogin(){
+  const modal = document.getElementById('teacherLoginModal');
+  if(!modal) return;
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden','true');
+}
+
+function teacherLogin(){
+  const email = document.getElementById('teacherEmail').value.trim();
+  const password = document.getElementById('teacherPassword').value;
+  const error = document.getElementById('teacherLoginError');
+
+  if(!email || !password){
+    error.textContent = 'Preencha o e-mail e a senha para continuar.';
+    error.classList.add('on');
+    return;
+  }
+
+  if(!email.includes('@') || email.startsWith('@') || email.endsWith('@')){
+    error.textContent = 'Digite um e-mail válido.';
+    error.classList.add('on');
+    return;
+  }
+
+  /* Login funcional apenas no front-end: qualquer e-mail/senha preenchidos entram. */
+  teacherLoggedIn = true;
+  teacherSessionEmail = email;
+  closeTeacherLogin();
+  updateTeacherLoginUI();
+  showToast('Login de professor realizado nesta sessão.', 'win');
+}
+
+function teacherLogout(){
+  teacherLoggedIn = false;
+  teacherSessionEmail = '';
+  updateTeacherLoginUI();
+  showToast('Você saiu do modo professor.');
+}
+
+function updateTeacherLoginUI() {
+  const btn = document.getElementById('teacherLoginBtn');
+  const teacherNav = document.getElementById('navTeacher');
+  const lock = document.getElementById('teacherAreaLock');
+
+  if (btn) {
+    if (teacherLoggedIn) {
+      btn.textContent = '🚪 Sair do professor';
+      btn.onclick = teacherLogout;
+    } else {
+      btn.textContent = '🧑‍🏫 Entrar como professor';
+      btn.onclick = openTeacherLogin;
+    }
+  }
+
+  // O menu/área do professor só fica disponível após o login.
+  if (teacherNav) teacherNav.classList.toggle('teacher-locked', !teacherLoggedIn);
+  if (lock) lock.style.display = teacherLoggedIn ? 'none' : 'block';
+}
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    const modal = document.getElementById('teacherLoginModal');
+    if(modal && modal.style.display !== 'none') closeTeacherLogin();
+  }
+});
+
+document.addEventListener('click', (e) => {
+  const modal = document.getElementById('teacherLoginModal');
+  if(modal && e.target === modal) closeTeacherLogin();
+});
+
 /* ============================================================
    SPEAK UP — BIBLIOTECAS DE CONTEÚDO
    Formato compacto: cada linha "contexto|dificuldade|habilidade|texto|extra"
@@ -3657,6 +3887,97 @@ function welcome(){
 }
 boot();
 
+updateTeacherLoginUI();
+</script>
+
+<script>
+/* ---------- ACESSIBILIDADE (módulo independente) ---------- */
+(function(){
+  const KEY = 'speakup_a11y_v1';
+  const FLAGS = ['contrast','dyslexia','spacing','links','motion','focus','cursor','reader','vlibras'];
+  const root = document.documentElement;
+  let st = {size:0};
+  FLAGS.forEach(f => st[f] = false);
+  try{ Object.assign(st, JSON.parse(localStorage.getItem(KEY) || '{}')); }catch(e){}
+
+  const persist = () => { try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} };
+  const live = msg => { const l = document.getElementById('a11yLive'); if(l){ l.textContent = ''; setTimeout(()=>l.textContent = msg, 30); } };
+
+  function loadVLibras(){
+    if(document.getElementById('vlibrasHost')) { document.getElementById('vlibrasHost').style.display = ''; return; }
+    const host = document.createElement('div');
+    host.id = 'vlibrasHost';
+    host.setAttribute('vw','');
+    host.className = 'enabled';
+    host.innerHTML = '<div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>';
+    document.body.appendChild(host);
+    const s = document.createElement('script');
+    s.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+    s.onload = () => { try{ new window.VLibras.Widget('https://vlibras.gov.br/app'); }catch(e){} };
+    document.head.appendChild(s);
+  }
+
+  function apply(){
+    root.style.fontSize = (15.5 + st.size * 2) + 'px';
+    FLAGS.forEach(f => { if(f !== 'reader' && f !== 'vlibras') root.classList.toggle('a11y-' + f, !!st[f]); });
+    document.querySelectorAll('[data-a11y]').forEach(b => {
+      const on = !!st[b.dataset.a11y];
+      b.setAttribute('aria-pressed', on);
+      b.textContent = on ? 'Ligado' : 'Desligado';
+    });
+    if(st.vlibras) loadVLibras();
+    else { const h = document.getElementById('vlibrasHost'); if(h) h.style.display = 'none'; }
+    if(!st.reader && window.speechSynthesis) speechSynthesis.cancel();
+  }
+
+  /* Leitura em voz alta: lê o elemento focado/clicado */
+  function speak(el){
+    if(!st.reader || !window.speechSynthesis || !el) return;
+    const text = (el.getAttribute('aria-label') || el.innerText || el.value || el.alt || '').trim();
+    if(!text) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text.slice(0, 600));
+    u.lang = 'pt-BR';
+    speechSynthesis.speak(u);
+  }
+  document.addEventListener('focusin', e => { if(!e.target.closest('#a11yPanel')) speak(e.target); });
+  document.addEventListener('click', e => {
+    if(!st.reader) return;
+    const el = e.target.closest('h1,h2,h3,p,li,button,a,label,td,th,.card');
+    if(el && !el.closest('#a11yPanel')) speak(el);
+  });
+
+  const fab = document.getElementById('a11yFab');
+  const panel = document.getElementById('a11yPanel');
+  function toggle(open){
+    const show = open ?? !panel.classList.contains('on');
+    panel.classList.toggle('on', show);
+    fab.setAttribute('aria-expanded', show);
+    if(show) panel.querySelector('button').focus(); else fab.focus();
+  }
+  fab.addEventListener('click', () => toggle());
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && panel.classList.contains('on')) toggle(false); });
+
+  panel.addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    if(b.dataset.a11ySize !== undefined){
+      const v = +b.dataset.a11ySize;
+      st.size = v === 0 ? 0 : Math.max(-1, Math.min(4, st.size + v));
+      live('Tamanho do texto ajustado');
+    } else if(b.dataset.a11y){
+      st[b.dataset.a11y] = !st[b.dataset.a11y];
+      live(b.parentElement.previousElementSibling?.textContent + (st[b.dataset.a11y] ? ' ligado' : ' desligado'));
+    } else if(b.id === 'a11yReset'){
+      st = {size:0}; FLAGS.forEach(f => st[f] = false);
+      live('Configurações de acessibilidade restauradas');
+    } else return;
+    persist(); apply();
+  });
+
+  apply();
+})();
 </script>
 </body>
 </html>
+
+<script>document.addEventListener('DOMContentLoaded', updateTeacherLoginUI);</script>
